@@ -1,6 +1,6 @@
 ## Authentication
 
-#### Using [Clerk](https://clerk.com/)
+### Using [Clerk](https://clerk.com/)
 
 Paste the API keys in the `.env` file (lats used for prisma). Then install clerk using
 
@@ -39,4 +39,33 @@ export default authMiddleware({});
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
+```
+
+### Pages
+
+```js
+// app/(auth)/(routes)/sign-in/[[...sign-in]]/page.tsx
+import { SignIn } from "@clerk/nextjs";
+ 
+export default function Page() {
+  return <SignIn />;
+}
+```
+
+```js
+// app/(auth)/(routes)/sign-up/[[...sign-up]]/page.tsx
+import { SignUp } from "@clerk/nextjs";
+ 
+export default function Page() {
+  return <SignUp />;
+}
+```
+
+### Update environment variables
+for the signIn, signUp, afterSignUp, and afterSignIn paths:
+```env
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
 ```
